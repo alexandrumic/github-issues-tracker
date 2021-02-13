@@ -10,9 +10,15 @@
     "lint": "eslint . --ext=jsx,tsx,ts",
     "lint-fix": "eslint . --ext=jsx,tsx,ts --fix"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn tsc"
+    }
+  },
   "dependencies": {
     "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react-native": "0.63.4",
+    "react-native-navigation": "^7.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -27,6 +33,7 @@
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.19.0",
+    "husky": "^5.0.9",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.65.0",
     "react-test-renderer": "16.13.1",
