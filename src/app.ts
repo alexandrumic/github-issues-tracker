@@ -1,34 +1,19 @@
 import { Navigation } from 'react-native-navigation';
 
 import { registerScreens } from './navigation';
+import { setDefaultOptions } from './navigation/options';
+import { goToHome } from './navigation/navigate';
 
 function start() {
   registerScreens();
+  setDefaultOptions();
   Navigation.events().registerAppLaunchedListener(() => {
     setRoot();
   });
 }
 
 function setRoot() {
-  Navigation.setRoot({
-    root: {
-      stack: {
-        children: [
-          {
-            component: {
-              name: 'Home',
-              options: {
-                topBar: {
-                  visible: false,
-                  height: 0,
-                },
-              },
-            },
-          },
-        ],
-      },
-    },
-  });
+  goToHome();
 }
 
 export { start };

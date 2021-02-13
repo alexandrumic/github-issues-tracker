@@ -1,10 +1,15 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
-import { Navigation, NavigationFunctionComponent } from 'react-native-navigation';
+import {
+  Navigation,
+  NavigationFunctionComponent,
+} from 'react-native-navigation';
 
-const IssuesListScreen: NavigationFunctionComponent = (props) => {
+import { goToHome, openFiltersModal } from '../../../../navigation/navigate';
+
+const IssuesListScreen: NavigationFunctionComponent = () => {
   const goToIssueDetails = () => {
-    Navigation.push(props.componentId, {
+    Navigation.push('IssuesStack', {
       component: {
         name: 'IssueDetails',
       },
@@ -16,6 +21,14 @@ const IssuesListScreen: NavigationFunctionComponent = (props) => {
       <Text style={styles.text}>Issues List Screen</Text>
       <Pressable onPress={goToIssueDetails}>
         <Text>See Issue Details</Text>
+      </Pressable>
+
+      <Pressable onPress={goToHome}>
+        <Text>Go back home</Text>
+      </Pressable>
+
+      <Pressable onPress={openFiltersModal}>
+        <Text>Open modal</Text>
       </Pressable>
     </View>
   );
@@ -30,6 +43,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
+    marginBottom: 20,
   },
 });
 

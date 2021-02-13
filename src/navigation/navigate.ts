@@ -1,13 +1,37 @@
 import { Navigation } from 'react-native-navigation';
+import { icons } from '../assets';
+
+export const goToHome = () =>
+  Navigation.setRoot({
+    root: {
+      stack: {
+        id: 'HomeStack',
+        children: [
+          {
+            component: {
+              name: 'Home',
+              options: {
+                topBar: {
+                  visible: false,
+                  height: 0,
+                },
+              },
+            },
+          },
+        ],
+      },
+    },
+  });
 
 export const goToIssues = () =>
   Navigation.setRoot({
     root: {
       bottomTabs: {
-        id: 'BottomTabsID',
+        id: 'BottomTabs',
         children: [
           {
             stack: {
+              id: 'IssuesStack',
               children: [
                 {
                   component: {
@@ -23,45 +47,61 @@ export const goToIssues = () =>
                 },
               ],
               options: {
-                popGesture: true,
-                topBar: {
-                  background: {
-                    color: 'lightgrey',
-                  },
-                },
                 bottomTab: {
-                  text: 'Issues',
-                  textColor: 'red',
-                  selectedTextColor: 'blue',
-                  // icon: require('./signin.png')
-                },
-                bottomTabs: {
-                  backgroundColor: 'lightgrey',
+                  text: 'List',
+                  icon: icons.listWhite,
+                  selectedIcon: icons.listBlue,
                 },
               },
             },
           },
           {
             stack: {
+              id: 'FavIssuesStack',
               children: [
                 {
                   component: {
                     name: 'FavouritesIssues',
+                    options: {
+                      topBar: {
+                        title: {
+                          text: 'Favourites',
+                        },
+                      },
+                    },
                   },
                 },
               ],
               options: {
-                popGesture: true,
                 bottomTab: {
-                  text: 'Issues',
-                  textColor: 'red',
-                  selectedTextColor: 'blue',
-                  // icon: require('./signin.png')
+                  text: 'Favourites',
+                  icon: icons.starWhite,
+                  selectedIcon: icons.starBlue,
                 },
               },
             },
           },
         ],
       },
+    },
+  });
+
+export const openFiltersModal = () =>
+  Navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            name: 'FiltersModal',
+            options: {
+              topBar: {
+                title: {
+                  text: 'Filters Modal',
+                },
+              },
+            },
+          },
+        },
+      ],
     },
   });
