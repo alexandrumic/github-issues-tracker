@@ -20,22 +20,13 @@ const FiltersModal = () => {
         <Text style={styles.title}>Sort:</Text>
         <View style={styles.row}>
           <Touchable style={[styles.radioContainer, styles.activeContainer]}>
-            <Text style={styles.activeContainerText}>Date created asc</Text>
+            <Text style={styles.activeContainerText}>Created</Text>
           </Touchable>
           <Touchable style={styles.radioContainer}>
-            <Text style={styles.radioText}>Date created des</Text>
+            <Text>Updated</Text>
           </Touchable>
           <Touchable style={styles.radioContainer}>
-            <Text>Date updated asc</Text>
-          </Touchable>
-          <Touchable style={styles.radioContainer}>
-            <Text>Date updated des</Text>
-          </Touchable>
-          <Touchable style={styles.radioContainer}>
-            <Text>Comments asc</Text>
-          </Touchable>
-          <Touchable style={styles.radioContainer}>
-            <Text>Comments des</Text>
+            <Text>Comments</Text>
           </Touchable>
         </View>
       </View>

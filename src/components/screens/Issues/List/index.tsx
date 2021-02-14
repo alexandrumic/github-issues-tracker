@@ -34,6 +34,16 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const loadMore = () => {
+    console.log('LOAD MOREEEEE', issues);
+
+    const { api, loadMoreAPI, meta } = issues;
+
+    if (!loadMoreAPI.pending && api.success) {
+      props.loadMore(meta);
+    }
+  };
+
   const goToIssueDetails = () => {
     Navigation.push('IssuesStack', {
       component: {
@@ -45,7 +55,7 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
   const getDefaultItemLayout = (_: any, index: number) => {
     return {
       length: ITEM_HEIGHT,
-      offset: ITEM_HEIGHT * index,
+      offset: (ITEM_HEIGHT + 10) * index,
       index,
     };
   };
@@ -83,6 +93,8 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
         ListEmptyComponent={renderEmpty}
         ItemSeparatorComponent={renderSeparator}
         getItemLayout={getDefaultItemLayout}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.7}
         refreshing={issues.api.pending}
       />
     </View>

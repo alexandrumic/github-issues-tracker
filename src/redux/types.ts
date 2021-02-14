@@ -1,4 +1,4 @@
-import { IssuesStateInterface } from './issues/types';
+import { IssuesStateInterface, MetaInterface } from './issues/types';
 
 export interface AppState {
   issues: IssuesStateInterface;
@@ -17,8 +17,5 @@ export interface ActionInterface {
 
 export interface GetIssuesPayloadInterface {
   type: string;
-  payload: {
-    owner: string;
-    repo: string;
-  };
+  payload: MetaInterface;
 }

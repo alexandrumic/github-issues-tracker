@@ -5,9 +5,16 @@ import { ActionInterface } from '../types';
 import issuesTypes, { IssuesStateInterface } from './types';
 
 export const initialState: IssuesStateInterface = {
+  meta: {
+    per_page: 15,
+    page: 1,
+    state: 'all',
+    sort: 'created',
+  },
   data: [],
   initialLoad: true,
   api: apiStateCreator(),
+  loadMoreAPI: apiStateCreator(),
 };
 
 const getPending = (state: IssuesStateInterface) => {
@@ -23,7 +30,8 @@ const getPending = (state: IssuesStateInterface) => {
 const getSuccess = (state: IssuesStateInterface, action: ActionInterface) => {
   return {
     ...state,
-    data: action.payload,
+    meta: action.payload.meta,
+    data: action.payload.data,
     initialLoad: false,
     api: {
       ...initialState.api,
@@ -43,10 +51,48 @@ const getError = (state: IssuesStateInterface, action: ActionInterface) => {
   };
 };
 
+const loadMore = (state: IssuesStateInterface) => ({
+  ...state,
+  loadMoreAPI: {
+    ...initialState.loadMoreAPI,
+    pending: true,
+  },
+});
+
+const loadMoreSuccess = (
+  state: IssuesStateInterface,
+  action: ActionInterface,
+) => ({
+  ...state,
+  meta: action.payload.meta,
+  data: [...state.data, ...action.payload.data],
+  loadMoreAPI: {
+    ...initialState.loadMoreAPI,
+    success: true,
+  },
+});
+
+const loadMoreError = (
+  state: IssuesStateInterface,
+  action: ActionInterface,
+) => ({
+  ...state,
+  loadMoreAPI: {
+    ...initialState.loadMoreAPI,
+    error: action.payload,
+  },
+});
+
 const actionHandlers = {
   [issuesTypes.GET_ISSUES]: getPending,
   [issuesTypes.GET_ISSUES_SUCCESS]: getSuccess,
   [issuesTypes.GET_ISSUES_ERROR]: getError,
+
+  [issuesTypes.LOAD_MORE]: loadMore,
+  [issuesTypes.LOAD_MORE_SUCCESS]: loadMoreSuccess,
+  [issuesTypes.LOAD_MORE_ERROR]: loadMoreError,
+
+  [issuesTypes.RESET]: () => initialState,
 };
 
 export default createReducer(initialState, actionHandlers);

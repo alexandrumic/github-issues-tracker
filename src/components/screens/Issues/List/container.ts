@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return bindActionCreators(
     {
       getIssues: actions.get.pending,
+      loadMore: actions.loadMore.pending,
     },
     dispatch,
   );

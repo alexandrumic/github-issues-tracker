@@ -9,6 +9,12 @@ export default createTypes(
   GET_ISSUES
   GET_ISSUES_SUCCESS
   GET_ISSUES_ERROR
+  
+  LOAD_MORE
+  LOAD_MORE_SUCCESS
+  LOAD_MORE_ERROR
+  
+  RESET
 `,
   { prefix },
 );
@@ -62,8 +68,19 @@ export interface IssueInterface {
   performed_via_github_app: null;
 }
 
+export interface MetaInterface {
+  per_page: number;
+  page: number;
+  state: 'open' | 'closed' | 'all';
+  sort: 'created' | 'updated' | 'comments';
+  owner?: string;
+  repo?: string;
+}
+
 export interface IssuesStateInterface {
   data: IssueInterface[];
   api: AsyncStateInterface;
+  loadMoreAPI: AsyncStateInterface;
   initialLoad: boolean;
+  meta: MetaInterface;
 }
