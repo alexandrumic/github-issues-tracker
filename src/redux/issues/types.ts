@@ -53,8 +53,8 @@ export interface IssueInterface {
   assignees: any[];
   milestone: null;
   comments: number;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
   closed_at: null;
   author_association: string;
   active_lock_reason: null;
@@ -65,4 +65,5 @@ export interface IssueInterface {
 export interface IssuesStateInterface {
   data: IssueInterface[];
   api: AsyncStateInterface;
+  initialLoad: boolean;
 }

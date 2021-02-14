@@ -6,6 +6,7 @@ import issuesTypes, { IssuesStateInterface } from './types';
 
 export const initialState: IssuesStateInterface = {
   data: [],
+  initialLoad: true,
   api: apiStateCreator(),
 };
 
@@ -23,6 +24,7 @@ const getSuccess = (state: IssuesStateInterface, action: ActionInterface) => {
   return {
     ...state,
     data: action.payload,
+    initialLoad: false,
     api: {
       ...initialState.api,
       success: true,
@@ -33,6 +35,7 @@ const getSuccess = (state: IssuesStateInterface, action: ActionInterface) => {
 const getError = (state: IssuesStateInterface, action: ActionInterface) => {
   return {
     ...state,
+    initialLoad: false,
     api: {
       ...initialState.api,
       error: action.payload,
