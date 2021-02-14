@@ -1,29 +1,30 @@
 import React from 'react';
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { View, Image } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+import DefaultInput from '../../atoms/Inputs/Default';
+import PrimaryButton from '../../atoms/Buttons/Primary';
+import Separator from '../../atoms/ListSeparator';
 
 import { goToIssues } from '../../../navigation/navigate';
 
+import { images } from '../../../assets';
+
+import styles from './styles';
+
 const HomeScreen = () => {
   return (
-    <View style={styles.base}>
-      <Text style={styles.text}>Home Screen</Text>
-      <Pressable onPress={goToIssues}>
-        <Text>Go to issues</Text>
-      </Pressable>
-    </View>
+    <KeyboardAwareScrollView contentContainerStyle={styles.base}>
+      <Image style={styles.image} source={images.octoCat} />
+      <View style={styles.formContainer}>
+        <DefaultInput label='Organisation' placeholder='facebook' />
+        <Separator size={20} />
+        <DefaultInput label='Repository' placeholder='react-native' />
+      </View>
+
+      <PrimaryButton onPress={goToIssues} text='Search' />
+    </KeyboardAwareScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  base: {
-    flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 18,
-  },
-});
 
 export default HomeScreen;

@@ -92,6 +92,7 @@ export const openFiltersModal = () =>
       children: [
         {
           component: {
+            id: 'FiltersModal',
             name: 'FiltersModal',
             options: {
               topBar: {

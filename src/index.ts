@@ -1,4 +1,6 @@
+import { LogBox } from 'react-native';
+
 import { start } from './app';
 
-console.disableYellowBox = true;
+LogBox.ignoreAllLogs();
 start();

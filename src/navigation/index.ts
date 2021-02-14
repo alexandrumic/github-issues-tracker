@@ -7,6 +7,8 @@ import Home from '../components/screens/Home';
 import IssuesList from '../components/screens/Issues/List/container';
 import FavouritesIssues from '../components/screens/Issues/Favourites';
 import IssueDetails from '../components/screens/IssueDetails';
+import ChangeGithub from '../components/molecules/ChangeGithub';
+
 import FiltersModal from '../components/screens/FiltersModal';
 
 function registerScreens() {
@@ -20,6 +22,8 @@ function registerScreens() {
   Navigation.registerComponent('FavouritesIssues', () => FavouritesIssues);
   Navigation.registerComponent('IssueDetails', () => IssueDetails);
   Navigation.registerComponent('FiltersModal', () => FiltersModal);
+
+  Navigation.registerComponent('ChangeGithub', () => ChangeGithub);
 }
 
 export { registerScreens };

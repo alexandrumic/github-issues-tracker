@@ -1,10 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  base: {
-    flex: 1,
-  },
-  content: {
-    padding: 10,
+  image: {
+    resizeMode: 'contain',
+    width: 25,
+    height: 25,
   },
 });
