@@ -23,20 +23,18 @@ import { Props } from './types';
 import styles from './styles';
 
 const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
-  const { issues } = props;
+  const { issues, owner, repo } = props;
 
   useEffect(() => {
-    async function getData(owner: string, repo: string) {
-      await props.getIssues({ owner, repo });
+    async function getData(ownerValue: string, repoValue: string) {
+      await props.getIssues({ owner: ownerValue, repo: repoValue });
     }
 
-    getData('Nozbe', 'WatermelonDB');
+    getData(owner, repo);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadMore = () => {
-    console.log('LOAD MOREEEEE', issues);
-
     const { api, loadMoreAPI, meta } = issues;
 
     if (!loadMoreAPI.pending && api.success) {
@@ -60,6 +58,11 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
     };
   };
 
+  const tryAgain = () => {
+    props.reset();
+    goToHome();
+  };
+
   const extractKey = (item: IssueInterface) => `${item.id}`;
 
   const renderItem = ({ item }: { item: IssueInterface }): ReactElement => {
@@ -75,7 +78,10 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
   );
 
   const renderEmpty = (): ReactElement => (
-    <EmptyState onPress={goToHome} text='There are no issues found' />
+    <EmptyState
+      onPress={tryAgain}
+      text='There are no issues found or invalid Organization/Repository'
+    />
   );
 
   if (issues.initialLoad) {

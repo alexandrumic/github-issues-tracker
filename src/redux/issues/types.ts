@@ -14,6 +14,9 @@ export default createTypes(
   LOAD_MORE_SUCCESS
   LOAD_MORE_ERROR
   
+  SET_OWNER
+  SET_REPO
+  
   RESET
 `,
   { prefix },
@@ -77,10 +80,16 @@ export interface MetaInterface {
   repo?: string;
 }
 
+export interface InputsInterface {
+  owner: string;
+  repo: string;
+}
+
 export interface IssuesStateInterface {
   data: IssueInterface[];
   api: AsyncStateInterface;
   loadMoreAPI: AsyncStateInterface;
   initialLoad: boolean;
   meta: MetaInterface;
+  inputs: InputsInterface;
 }

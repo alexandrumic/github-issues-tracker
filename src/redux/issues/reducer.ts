@@ -11,6 +11,10 @@ export const initialState: IssuesStateInterface = {
     state: 'all',
     sort: 'created',
   },
+  inputs: {
+    owner: '',
+    repo: '',
+  },
   data: [],
   initialLoad: true,
   api: apiStateCreator(),
@@ -83,6 +87,26 @@ const loadMoreError = (
   },
 });
 
+const setOwner = (state: IssuesStateInterface, action: ActionInterface) => {
+  return {
+    ...state,
+    inputs: {
+      ...state.inputs,
+      owner: action.payload,
+    },
+  };
+};
+
+const setRepo = (state: IssuesStateInterface, action: ActionInterface) => {
+  return {
+    ...state,
+    inputs: {
+      ...state.inputs,
+      repo: action.payload,
+    },
+  };
+};
+
 const actionHandlers = {
   [issuesTypes.GET_ISSUES]: getPending,
   [issuesTypes.GET_ISSUES_SUCCESS]: getSuccess,
@@ -91,6 +115,9 @@ const actionHandlers = {
   [issuesTypes.LOAD_MORE]: loadMore,
   [issuesTypes.LOAD_MORE_SUCCESS]: loadMoreSuccess,
   [issuesTypes.LOAD_MORE_ERROR]: loadMoreError,
+
+  [issuesTypes.SET_OWNER]: setOwner,
+  [issuesTypes.SET_REPO]: setRepo,
 
   [issuesTypes.RESET]: () => initialState,
 };

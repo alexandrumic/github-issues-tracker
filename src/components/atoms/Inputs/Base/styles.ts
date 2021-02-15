@@ -18,6 +18,6 @@ export default StyleSheet.create({
   },
   error: {
     color: Colors.red,
-    borderBottomColor: Colors.red,
+    borderColor: Colors.red,
   },
 });

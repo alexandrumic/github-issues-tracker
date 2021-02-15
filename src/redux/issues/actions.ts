@@ -14,10 +14,17 @@ const loadMore = asyncActionCreator(
   types.LOAD_MORE_ERROR,
 );
 
+const setOwner = actionCreator(types.SET_OWNER);
+const setRepo = actionCreator(types.SET_REPO);
+
 const reset = actionCreator(types.RESET);
 
 export default {
   get,
   loadMore,
+
+  setOwner,
+  setRepo,
+
   reset,
 };
