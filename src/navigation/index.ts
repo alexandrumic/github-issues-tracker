@@ -9,7 +9,7 @@ import FavouritesIssues from '../components/screens/Issues/Favourites';
 import IssueDetails from '../components/screens/IssueDetails';
 import ChangeGithub from '../components/molecules/ChangeGithub';
 
-import FiltersModal from '../components/screens/FiltersModal';
+import FiltersModal from '../components/screens/FiltersModal/container';
 
 function registerScreens() {
   Navigation.registerComponentWithRedux('Home', () => Home, Provider, store);
@@ -21,7 +21,12 @@ function registerScreens() {
   );
   Navigation.registerComponent('FavouritesIssues', () => FavouritesIssues);
   Navigation.registerComponent('IssueDetails', () => IssueDetails);
-  Navigation.registerComponent('FiltersModal', () => FiltersModal);
+  Navigation.registerComponentWithRedux(
+    'FiltersModal',
+    () => FiltersModal,
+    Provider,
+    store,
+  );
 
   Navigation.registerComponent('ChangeGithub', () => ChangeGithub);
 }

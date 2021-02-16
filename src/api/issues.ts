@@ -4,7 +4,7 @@ import { getErrorMsg } from './utils';
 import { MetaInterface } from '../redux/issues/types';
 
 const get = async (meta: MetaInterface): Promise<any> => {
-  const { owner, repo, per_page, page, state = 'all', sort = 'created' } = meta;
+  const { owner, repo, per_page, page, state, sort } = meta;
   const res = await API.get(
     `/repos/${owner}/${repo}/issues?state=${state}&sort=${sort}&per_page=${per_page}&page=${page}`,
   );
@@ -19,6 +19,8 @@ const get = async (meta: MetaInterface): Promise<any> => {
       page: page + 1,
       owner,
       repo,
+      state,
+      sort,
     },
     data: res.data || [],
   };

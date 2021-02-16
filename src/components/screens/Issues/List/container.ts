@@ -6,6 +6,8 @@ import {
   getIssuesState,
   getOwnerValue,
   getRepoValue,
+  getStateFilter,
+  getSortFilter,
 } from '../../../../redux/issues/selectors';
 import { AppState } from '../../../../redux/types';
 
@@ -16,6 +18,8 @@ const mapStateToProps = (state: AppState) => {
     issues: getIssuesState(state),
     owner: getOwnerValue(state),
     repo: getRepoValue(state),
+    stateFilter: getStateFilter(state),
+    sortFilter: getSortFilter(state),
   };
 };
 

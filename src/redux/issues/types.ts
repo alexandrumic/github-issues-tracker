@@ -17,6 +17,9 @@ export default createTypes(
   SET_OWNER
   SET_REPO
   
+  SET_FILTER_STATE
+  SET_FILTER_SORT
+  
   RESET
 `,
   { prefix },
@@ -71,11 +74,14 @@ export interface IssueInterface {
   performed_via_github_app: null;
 }
 
+export type StateType = 'open' | 'closed' | 'all';
+export type SortType = 'created' | 'updated' | 'comments';
+
 export interface MetaInterface {
   per_page: number;
   page: number;
-  state: 'open' | 'closed' | 'all';
-  sort: 'created' | 'updated' | 'comments';
+  state: StateType;
+  sort: SortType;
   owner?: string;
   repo?: string;
 }

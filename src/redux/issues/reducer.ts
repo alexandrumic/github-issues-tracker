@@ -107,6 +107,32 @@ const setRepo = (state: IssuesStateInterface, action: ActionInterface) => {
   };
 };
 
+const setFilterState = (
+  state: IssuesStateInterface,
+  action: ActionInterface,
+) => {
+  return {
+    ...state,
+    meta: {
+      ...state.meta,
+      state: action.payload,
+    },
+  };
+};
+
+const setFilterSort = (
+  state: IssuesStateInterface,
+  action: ActionInterface,
+) => {
+  return {
+    ...state,
+    meta: {
+      ...state.meta,
+      sort: action.payload,
+    },
+  };
+};
+
 const actionHandlers = {
   [issuesTypes.GET_ISSUES]: getPending,
   [issuesTypes.GET_ISSUES_SUCCESS]: getSuccess,
@@ -118,6 +144,9 @@ const actionHandlers = {
 
   [issuesTypes.SET_OWNER]: setOwner,
   [issuesTypes.SET_REPO]: setRepo,
+
+  [issuesTypes.SET_FILTER_STATE]: setFilterState,
+  [issuesTypes.SET_FILTER_SORT]: setFilterSort,
 
   [issuesTypes.RESET]: () => initialState,
 };

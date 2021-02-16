@@ -17,6 +17,9 @@ const loadMore = asyncActionCreator(
 const setOwner = actionCreator(types.SET_OWNER);
 const setRepo = actionCreator(types.SET_REPO);
 
+const setStateFilter = actionCreator(types.SET_FILTER_STATE);
+const setSortFilter = actionCreator(types.SET_FILTER_SORT);
+
 const reset = actionCreator(types.RESET);
 
 export default {
@@ -25,6 +28,9 @@ export default {
 
   setOwner,
   setRepo,
+
+  setStateFilter,
+  setSortFilter,
 
   reset,
 };

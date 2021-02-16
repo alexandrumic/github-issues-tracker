@@ -23,7 +23,7 @@ import { Props } from './types';
 import styles from './styles';
 
 const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
-  const { issues, owner, repo } = props;
+  const { issues, owner, repo, stateFilter, sortFilter } = props;
 
   useEffect(() => {
     async function getData(ownerValue: string, repoValue: string) {
@@ -40,6 +40,15 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
     if (!loadMoreAPI.pending && api.success) {
       props.loadMore(meta);
     }
+  };
+
+  const onRefresh = () => {
+    props.getIssues({
+      owner,
+      repo,
+      state: stateFilter,
+      sort: sortFilter,
+    });
   };
 
   const goToIssueDetails = () => {
@@ -101,6 +110,7 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
         getItemLayout={getDefaultItemLayout}
         onEndReached={loadMore}
         onEndReachedThreshold={0.7}
+        onRefresh={onRefresh}
         refreshing={issues.api.pending}
       />
     </View>

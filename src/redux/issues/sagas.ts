@@ -8,19 +8,19 @@ import issuesActions from './actions';
 import types, { MetaInterface } from './types';
 
 function* getIssues(action: GetIssuesPayloadInterface) {
-  const { owner, repo } = action.payload;
+  const { owner, repo, state = 'all', sort = 'created' } = action.payload;
   const meta: MetaInterface = {
     per_page: 15,
     page: 1,
-    state: 'all',
-    sort: 'created',
+    state,
+    sort,
     owner,
     repo,
   };
 
   try {
     const data = yield call(API.get, meta);
-    yield put(issuesActions.get.success(data));
+    return yield put(issuesActions.get.success(data));
   } catch (err) {
     yield call(Logger.error, err);
     yield put(issuesActions.get.error(err));
