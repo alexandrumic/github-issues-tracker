@@ -2,10 +2,10 @@ import { TextInputProps, TextStyle, StyleProp } from 'react-native';
 
 export type Props = TextInputProps & {
   baseRef?: any;
-  error?: string | {};
+  isError?: boolean;
+  errorMessage?: string;
   label?: string;
   name?: string;
-  isValid?: Boolean;
-  isDisabled?: Boolean;
+  isDisabled?: boolean;
   textStyle?: StyleProp<TextStyle>;
 };

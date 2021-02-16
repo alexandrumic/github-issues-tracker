@@ -23,16 +23,33 @@ import { Props } from './types';
 import styles from './styles';
 
 const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
-  const { issues } = props;
+  const { issues, owner, repo, stateFilter, sortFilter } = props;
 
   useEffect(() => {
-    async function getData(owner: string, repo: string) {
-      await props.getIssues({ owner, repo });
+    async function getData(ownerValue: string, repoValue: string) {
+      await props.getIssues({ owner: ownerValue, repo: repoValue });
     }
 
-    getData('Nozbe', 'WatermelonDB');
+    getData(owner, repo);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const loadMore = () => {
+    const { api, loadMoreAPI, meta } = issues;
+
+    if (!loadMoreAPI.pending && api.success) {
+      props.loadMore(meta);
+    }
+  };
+
+  const onRefresh = () => {
+    props.getIssues({
+      owner,
+      repo,
+      state: stateFilter,
+      sort: sortFilter,
+    });
+  };
 
   const goToIssueDetails = () => {
     Navigation.push('IssuesStack', {
@@ -45,9 +62,14 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
   const getDefaultItemLayout = (_: any, index: number) => {
     return {
       length: ITEM_HEIGHT,
-      offset: ITEM_HEIGHT * index,
+      offset: (ITEM_HEIGHT + 10) * index,
       index,
     };
+  };
+
+  const tryAgain = () => {
+    props.reset();
+    goToHome();
   };
 
   const extractKey = (item: IssueInterface) => `${item.id}`;
@@ -65,7 +87,10 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
   );
 
   const renderEmpty = (): ReactElement => (
-    <EmptyState onPress={goToHome} text='There are no issues found' />
+    <EmptyState
+      onPress={tryAgain}
+      text='There are no issues found or invalid Organization/Repository'
+    />
   );
 
   if (issues.initialLoad) {
@@ -83,6 +108,9 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
         ListEmptyComponent={renderEmpty}
         ItemSeparatorComponent={renderSeparator}
         getItemLayout={getDefaultItemLayout}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.7}
+        onRefresh={onRefresh}
         refreshing={issues.api.pending}
       />
     </View>

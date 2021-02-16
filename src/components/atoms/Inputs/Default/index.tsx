@@ -7,12 +7,13 @@ import { Props } from './types';
 import styles from './styles';
 
 const DefaultInput: FC<Props> = forwardRef((props, ref) => {
-  const { label, ...rest } = props;
+  const { label, errorMessage, ...rest } = props;
 
   return (
-    <View style={styles.base}>
+    <View>
       {label && <Text style={styles.label}>{`${label}:`}</Text>}
       <BaseInput baseRef={ref} {...rest} />
+      {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
     </View>
   );
 });

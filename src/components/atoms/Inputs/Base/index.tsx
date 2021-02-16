@@ -10,13 +10,13 @@ const BaseInput: FC<Props> = ({
   baseRef,
   isDisabled,
   textStyle,
-  isValid,
+  isError,
   ...rest
 }) => {
   const baseStyle = [
     styles.base,
     isDisabled && styles.disabled,
-    isValid && styles.error,
+    isError && styles.error,
     textStyle,
   ];
 

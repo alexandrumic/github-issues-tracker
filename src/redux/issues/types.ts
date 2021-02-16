@@ -9,6 +9,18 @@ export default createTypes(
   GET_ISSUES
   GET_ISSUES_SUCCESS
   GET_ISSUES_ERROR
+  
+  LOAD_MORE
+  LOAD_MORE_SUCCESS
+  LOAD_MORE_ERROR
+  
+  SET_OWNER
+  SET_REPO
+  
+  SET_FILTER_STATE
+  SET_FILTER_SORT
+  
+  RESET
 `,
   { prefix },
 );
@@ -62,8 +74,28 @@ export interface IssueInterface {
   performed_via_github_app: null;
 }
 
+export type StateType = 'open' | 'closed' | 'all';
+export type SortType = 'created' | 'updated' | 'comments';
+
+export interface MetaInterface {
+  per_page: number;
+  page: number;
+  state: StateType;
+  sort: SortType;
+  owner?: string;
+  repo?: string;
+}
+
+export interface InputsInterface {
+  owner: string;
+  repo: string;
+}
+
 export interface IssuesStateInterface {
   data: IssueInterface[];
   api: AsyncStateInterface;
+  loadMoreAPI: AsyncStateInterface;
   initialLoad: boolean;
+  meta: MetaInterface;
+  inputs: InputsInterface;
 }
