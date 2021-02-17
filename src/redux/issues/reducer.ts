@@ -15,6 +15,7 @@ export const initialState: IssuesStateInterface = {
     owner: '',
     repo: '',
   },
+  favourites: [],
   data: [],
   initialLoad: true,
   api: apiStateCreator(),
@@ -133,6 +134,25 @@ const setFilterSort = (
   };
 };
 
+const toggleFavourite = (
+  state: IssuesStateInterface,
+  action: ActionInterface,
+) => {
+  const itemID = action.payload;
+
+  if (state.favourites.includes(itemID)) {
+    return {
+      ...state,
+      favourites: state.favourites.filter((item) => item !== itemID),
+    };
+  }
+
+  return {
+    ...state,
+    favourites: [...state.favourites, itemID],
+  };
+};
+
 const actionHandlers = {
   [issuesTypes.GET_ISSUES]: getPending,
   [issuesTypes.GET_ISSUES_SUCCESS]: getSuccess,
@@ -147,6 +167,8 @@ const actionHandlers = {
 
   [issuesTypes.SET_FILTER_STATE]: setFilterState,
   [issuesTypes.SET_FILTER_SORT]: setFilterSort,
+
+  [issuesTypes.TOGGLE_FAVOURITE]: toggleFavourite,
 
   [issuesTypes.RESET]: () => initialState,
 };

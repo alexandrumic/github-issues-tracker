@@ -20,6 +20,8 @@ const setRepo = actionCreator(types.SET_REPO);
 const setStateFilter = actionCreator(types.SET_FILTER_STATE);
 const setSortFilter = actionCreator(types.SET_FILTER_SORT);
 
+const toggleFavourite = actionCreator(types.TOGGLE_FAVOURITE);
+
 const reset = actionCreator(types.RESET);
 
 export default {
@@ -31,6 +33,8 @@ export default {
 
   setStateFilter,
   setSortFilter,
+
+  toggleFavourite,
 
   reset,
 };

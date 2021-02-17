@@ -77,7 +77,11 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
   const renderItem = ({ item }: { item: IssueInterface }): ReactElement => {
     return (
       <Touchable onPress={goToIssueDetails}>
-        <Item item={item} />
+        <Item
+          item={item}
+          favouritesIssues={props.favouritesIssues}
+          toggleFavourite={props.toggleFavourite}
+        />
       </Touchable>
     );
   };

@@ -4,6 +4,8 @@ const icons = {
 
   starWhite: require('./icons/bottom-tab/star-white.png'),
   starBlue: require('./icons/bottom-tab/star-blue.png'),
+  starBlack: require('./images/issues/star-black.png'),
+  starBlackOutline: require('./images/issues/star-black-outline.png'),
 };
 
 const images = {
