@@ -5,9 +5,9 @@ import store from '../redux/store';
 
 import Home from '../components/screens/Home/container';
 import IssuesList from '../components/screens/Issues/List/container';
-import FavouritesIssues from '../components/screens/Issues/Favourites';
+import FavouritesIssues from '../components/screens/Issues/Favourites/container';
 import IssueDetails from '../components/screens/IssueDetails';
-import ChangeGithub from '../components/molecules/ChangeGithub';
+import ChangeGithub from '../components/molecules/ChangeGithub/container';
 
 import FiltersModal from '../components/screens/FiltersModal/container';
 
@@ -19,7 +19,12 @@ function registerScreens() {
     Provider,
     store,
   );
-  Navigation.registerComponent('FavouritesIssues', () => FavouritesIssues);
+  Navigation.registerComponentWithRedux(
+    'FavouritesIssues',
+    () => FavouritesIssues,
+    Provider,
+    store,
+  );
   Navigation.registerComponent('IssueDetails', () => IssueDetails);
   Navigation.registerComponentWithRedux(
     'FiltersModal',
@@ -28,7 +33,12 @@ function registerScreens() {
     store,
   );
 
-  Navigation.registerComponent('ChangeGithub', () => ChangeGithub);
+  Navigation.registerComponentWithRedux(
+    'ChangeGithub',
+    () => ChangeGithub,
+    Provider,
+    store,
+  );
 }
 
 export { registerScreens };

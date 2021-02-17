@@ -13,4 +13,6 @@ export interface Props {
   repo: string;
   sortFilter: SortType;
   stateFilter: StateType;
+  favouritesIssues: number[];
+  toggleFavourite: (id: number) => void;
 }

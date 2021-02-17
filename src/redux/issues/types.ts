@@ -20,6 +20,8 @@ export default createTypes(
   SET_FILTER_STATE
   SET_FILTER_SORT
   
+  TOGGLE_FAVOURITE
+  
   RESET
 `,
   { prefix },
@@ -98,4 +100,5 @@ export interface IssuesStateInterface {
   initialLoad: boolean;
   meta: MetaInterface;
   inputs: InputsInterface;
+  favourites: number[];
 }

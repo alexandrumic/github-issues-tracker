@@ -12,6 +12,7 @@ export default StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   title: {
     flex: 1,
@@ -38,11 +39,23 @@ export default StyleSheet.create({
     fontWeight: '500',
     color: Colors.lightgrey,
   },
+  favIcon: {
+    resizeMode: 'contain',
+    width: 20,
+    height: 20,
+    position: 'relative',
+    right: 0,
+  },
   summary: {
-    // flex: 1,
     fontSize: 12,
     color: Colors.labelgrey,
     marginTop: 5,
+  },
+  hitSlop: {
+    top: 20,
+    bottom: 20,
+    left: 10,
+    right: 10,
   },
 });
 

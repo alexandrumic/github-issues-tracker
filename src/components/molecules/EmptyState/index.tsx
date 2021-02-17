@@ -12,7 +12,9 @@ const EmptyState: FC<Props> = ({ text, buttonText, onPress }) => (
   <View style={styles.base}>
     <Image style={styles.image} source={images.octoCatSad} />
     <Text style={styles.text}>{text}</Text>
-    <PrimaryButton onPress={onPress} text={buttonText || 'Try again'} />
+    {onPress && (
+      <PrimaryButton onPress={onPress} text={buttonText || 'Try again'} />
+    )}
   </View>
 );
 
