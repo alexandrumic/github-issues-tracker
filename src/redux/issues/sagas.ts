@@ -1,6 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { GetIssuesPayloadInterface } from '../types';
+import {
+  GetIssuesPayloadInterface,
+  GetIssuesDetailsPayloadInterface,
+} from '../types';
 
 import API from '../../api/issues';
 import Logger from '../../services/logger';
@@ -45,7 +48,24 @@ function* watchLoadMore() {
   yield takeLatest(types.LOAD_MORE, loadMore);
 }
 
+function* getIssueDetails(action: GetIssuesDetailsPayloadInterface) {
+  const { owner, repo, issueNumber } = action.payload;
+
+  try {
+    const data = yield call(API.getIssue, { owner, repo, issueNumber });
+    return yield put(issuesActions.getIssueDetails.success(data));
+  } catch (err) {
+    yield call(Logger.error, err);
+    yield put(issuesActions.getIssueDetails.error(err));
+  }
+}
+
+function* watchGetIssueDetails() {
+  yield takeLatest(types.GET_ISSUE_DETAILS, getIssueDetails);
+}
+
 export default {
   watchGetIssues,
   watchLoadMore,
+  watchGetIssueDetails,
 };

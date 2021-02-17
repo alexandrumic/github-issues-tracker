@@ -4,7 +4,7 @@ import { View, Text, Image } from 'react-native';
 import Touchable from '../../../../atoms/Touchable';
 
 import { formatDate } from '../../../../../services/date';
-import { icons } from '../../../../../assets';
+import { icons, images } from '../../../../../assets';
 import { Colors } from '../../../../../theme';
 
 import { Props } from './types';
@@ -50,13 +50,20 @@ const IssueItem: FC<Props> = (props) => {
         </Text>
         <Text style={styles.date}>{formatDate(item.updated_at)}</Text>
       </View>
-      <Touchable
-        style={styles.row}
-        onPress={() => toggleItemAsFavourite(item.id)}
-        hitSlop={styles.hitSlop}>
+      <View style={styles.row}>
         {renderState()}
-        <Image style={styles.favIcon} source={getFavIcon()} />
-      </Touchable>
+        <View style={styles.commentsContainer}>
+          <Image style={styles.commentsIcon} source={images.comments} />
+          <View style={styles.commentsNoContainer}>
+            <Text style={styles.commentsNo}>{item.comments}</Text>
+          </View>
+        </View>
+        <Touchable
+          onPress={() => toggleItemAsFavourite(item.id)}
+          hitSlop={styles.hitSlop}>
+          <Image style={styles.favIcon} source={getFavIcon()} />
+        </Touchable>
+      </View>
       <Text style={styles.summary}>
         #{item.number} opened at {formatDate(item.created_at, 'datetime24')} by{' '}
         {item.user.login}

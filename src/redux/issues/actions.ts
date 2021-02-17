@@ -14,6 +14,12 @@ const loadMore = asyncActionCreator(
   types.LOAD_MORE_ERROR,
 );
 
+const getIssueDetails = asyncActionCreator(
+  types.GET_ISSUE_DETAILS,
+  types.GET_ISSUE_DETAILS_SUCCESS,
+  types.GET_ISSUE_DETAILS_ERROR,
+);
+
 const setOwner = actionCreator(types.SET_OWNER);
 const setRepo = actionCreator(types.SET_REPO);
 
@@ -22,11 +28,14 @@ const setSortFilter = actionCreator(types.SET_FILTER_SORT);
 
 const toggleFavourite = actionCreator(types.TOGGLE_FAVOURITE);
 
+const resetIssueDetails = actionCreator(types.RESET_ISSUE_DETAILS);
 const reset = actionCreator(types.RESET);
 
 export default {
   get,
   loadMore,
+
+  getIssueDetails,
 
   setOwner,
   setRepo,
@@ -36,5 +45,6 @@ export default {
 
   toggleFavourite,
 
+  resetIssueDetails,
   reset,
 };

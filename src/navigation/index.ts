@@ -6,7 +6,7 @@ import store from '../redux/store';
 import Home from '../components/screens/Home/container';
 import IssuesList from '../components/screens/Issues/List/container';
 import FavouritesIssues from '../components/screens/Issues/Favourites/container';
-import IssueDetails from '../components/screens/IssueDetails';
+import IssueDetails from '../components/screens/IssueDetails/container';
 import ChangeGithub from '../components/molecules/ChangeGithub/container';
 
 import FiltersModal from '../components/screens/FiltersModal/container';
@@ -25,7 +25,12 @@ function registerScreens() {
     Provider,
     store,
   );
-  Navigation.registerComponent('IssueDetails', () => IssueDetails);
+  Navigation.registerComponentWithRedux(
+    'IssueDetails',
+    () => IssueDetails,
+    Provider,
+    store,
+  );
   Navigation.registerComponentWithRedux(
     'FiltersModal',
     () => FiltersModal,

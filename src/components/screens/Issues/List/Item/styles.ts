@@ -12,7 +12,6 @@ export default StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   title: {
     flex: 1,
@@ -43,8 +42,6 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     width: 20,
     height: 20,
-    position: 'relative',
-    right: 0,
   },
   summary: {
     fontSize: 12,
@@ -56,6 +53,31 @@ export default StyleSheet.create({
     bottom: 20,
     left: 10,
     right: 10,
+  },
+  commentsContainer: {
+    flex: 1,
+    marginLeft: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  commentsIcon: {
+    resizeMode: 'contain',
+    width: 20,
+    height: 20,
+  },
+  commentsNoContainer: {
+    marginLeft: 5,
+    backgroundColor: Colors.blue,
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  commentsNo: {
+    color: Colors.white,
+    fontSize: 10,
+    fontWeight: '600',
   },
 });
 

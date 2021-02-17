@@ -51,10 +51,13 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
     });
   };
 
-  const goToIssueDetails = () => {
+  const goToIssueDetails = (issueNumber: number) => {
     Navigation.push('IssuesStack', {
       component: {
         name: 'IssueDetails',
+        passProps: {
+          issueNumber,
+        },
       },
     });
   };
@@ -76,7 +79,7 @@ const IssuesListScreen: NavigationFunctionComponent<Props> = (props) => {
 
   const renderItem = ({ item }: { item: IssueInterface }): ReactElement => {
     return (
-      <Touchable onPress={goToIssueDetails}>
+      <Touchable onPress={() => goToIssueDetails(item.number)}>
         <Item
           item={item}
           favouritesIssues={props.favouritesIssues}
