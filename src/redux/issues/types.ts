@@ -14,6 +14,12 @@ export default createTypes(
   LOAD_MORE_SUCCESS
   LOAD_MORE_ERROR
   
+  GET_ISSUE_DETAILS
+  GET_ISSUE_DETAILS_SUCCESS
+  GET_ISSUE_DETAILS_ERROR
+  
+  RESET_ISSUE_DETAILS
+  
   SET_OWNER
   SET_REPO
   
@@ -93,8 +99,15 @@ export interface InputsInterface {
   repo: string;
 }
 
+export interface IssueDetailsMetaInterface {
+  owner: string;
+  repo: string;
+  issueNumber: number;
+}
+
 export interface IssuesStateInterface {
   data: IssueInterface[];
+  current: IssueInterface | {};
   api: AsyncStateInterface;
   loadMoreAPI: AsyncStateInterface;
   initialLoad: boolean;

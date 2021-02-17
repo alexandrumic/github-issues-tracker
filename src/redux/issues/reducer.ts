@@ -17,6 +17,7 @@ export const initialState: IssuesStateInterface = {
   },
   favourites: [],
   data: [],
+  current: {},
   initialLoad: true,
   api: apiStateCreator(),
   loadMoreAPI: apiStateCreator(),
@@ -87,6 +88,51 @@ const loadMoreError = (
     error: action.payload,
   },
 });
+
+const getIssueDetailsPending = (state: IssuesStateInterface) => {
+  return {
+    ...state,
+    api: {
+      ...initialState.api,
+      pending: true,
+    },
+  };
+};
+
+const getIssueDetailsSuccess = (
+  state: IssuesStateInterface,
+  action: ActionInterface,
+) => {
+  return {
+    ...state,
+    current: action.payload,
+    api: {
+      ...initialState.api,
+      success: true,
+    },
+  };
+};
+
+const getIssueDetailsError = (
+  state: IssuesStateInterface,
+  action: ActionInterface,
+) => {
+  return {
+    ...state,
+    initialLoad: false,
+    api: {
+      ...initialState.api,
+      error: action.payload,
+    },
+  };
+};
+
+const resetIssueDetails = (state: IssuesStateInterface) => {
+  return {
+    ...state,
+    current: initialState.current,
+  };
+};
 
 const setOwner = (state: IssuesStateInterface, action: ActionInterface) => {
   return {
@@ -161,6 +207,12 @@ const actionHandlers = {
   [issuesTypes.LOAD_MORE]: loadMore,
   [issuesTypes.LOAD_MORE_SUCCESS]: loadMoreSuccess,
   [issuesTypes.LOAD_MORE_ERROR]: loadMoreError,
+
+  [issuesTypes.GET_ISSUE_DETAILS]: getIssueDetailsPending,
+  [issuesTypes.GET_ISSUE_DETAILS_SUCCESS]: getIssueDetailsSuccess,
+  [issuesTypes.GET_ISSUE_DETAILS_ERROR]: getIssueDetailsError,
+
+  [issuesTypes.RESET_ISSUE_DETAILS]: resetIssueDetails,
 
   [issuesTypes.SET_OWNER]: setOwner,
   [issuesTypes.SET_REPO]: setRepo,

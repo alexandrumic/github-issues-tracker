@@ -16,6 +16,8 @@ const images = {
   swap: require('./images/issues/swap.png'),
   filter: require('./images/issues/filter.png'),
   sort: require('./images/issues/sort.png'),
+
+  comments: require('./images/issues/comments.png'),
 };
 
 export { icons, images };

@@ -23,8 +23,8 @@ const HomeScreen: NavigationFunctionComponent<Props> = (props) => {
 
   const onSubmit = (data: { owner: string; repo: string }) => {
     const { owner, repo } = data;
-    props.setOwner('callstack' || owner);
-    props.setRepo('react-native-testing-library' || repo);
+    props.setOwner(owner);
+    props.setRepo(repo);
     goToIssues();
   };
 
@@ -35,7 +35,7 @@ const HomeScreen: NavigationFunctionComponent<Props> = (props) => {
         <Controller
           name='owner'
           control={control}
-          // rules={{ required: 'This field is required' }}
+          rules={{ required: 'This field is required' }}
           defaultValue=''
           onFocus={() => ownerInputRef.current.focus()}
           render={() => (
@@ -57,7 +57,7 @@ const HomeScreen: NavigationFunctionComponent<Props> = (props) => {
         <Controller
           name='repo'
           control={control}
-          // rules={{ required: 'This field is required' }}
+          rules={{ required: 'This field is required' }}
           defaultValue=''
           onFocus={() => repoInputRef.current.focus()}
           render={() => (

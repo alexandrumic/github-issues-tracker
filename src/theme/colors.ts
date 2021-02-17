@@ -7,7 +7,7 @@ const Colors = {
   darkgrey: '#d8d8d8',
   labelgrey: '#9c9c9c',
   red: '#bd2c00',
-  green: '#6cc644',
+  green: '#28a745',
 };
 
 export default Colors;
