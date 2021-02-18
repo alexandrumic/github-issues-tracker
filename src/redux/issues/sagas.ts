@@ -68,4 +68,6 @@ export default {
   watchGetIssues,
   watchLoadMore,
   watchGetIssueDetails,
+
+  getIssues,
 };
