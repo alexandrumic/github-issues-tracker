@@ -21,6 +21,9 @@ const setDefaultOptions = () =>
         showTitle: false,
         color: Colors.white,
       },
+      title: {
+        color: Colors.white,
+      },
     },
     bottomTabs: {
       titleDisplayMode: 'alwaysShow',
